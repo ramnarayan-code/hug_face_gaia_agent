@@ -14,7 +14,7 @@ os.environ["TAVILY_API_KEY"] = ""
 
 def main():
   
-    llm = ChatOpenAI(model="gpt-4o", temperature=0.0, openai_api_key=os.getenv("OPENAI_API_KEY"))
+    llm = ChatOpenAI(model="gpt-o4-mini", temperature=0.0, openai_api_key=os.getenv("OPENAI_API_KEY"))
 
     tools = [
         TavilySearchResults(max_results=1),
