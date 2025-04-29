@@ -14,7 +14,7 @@ from tools.transcribe_audio_tool import AudioTranscriberTool
 
 def get_react_agent() -> ReACTAgent:
   
-    llm = ChatOpenAI(model="gpt-4o", temperature=0.0, openai_api_key=os.getenv("OPENAI_API_KEY"))
+    llm = ChatOpenAI(model="gpt-o4-mini", temperature=0.0, openai_api_key=os.getenv("OPENAI_API_KEY"))
 
     tools = [
         TavilySearchResults(max_results=1),
@@ -29,3 +29,8 @@ def get_react_agent() -> ReACTAgent:
        
     return agent
 
+<<<<<<< HEAD:src/construct_react_agent.py
+=======
+if __name__ == "__main__":
+    main()
+>>>>>>> 2af69503c3b8ed148b8ce34af296cc451964fefa:main.py
