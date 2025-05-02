@@ -27,7 +27,7 @@ class AudioTranscriberTool:
         # If audio_path is BytesIO, save to temporary file (Whisper requirement)
         if isinstance(audio_path, BytesIO):
             import tempfile
-            with tempfile.NamedTemporaryFile(suffix='.wav', delete=True) as temp_file:
+            with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
                 temp_file.write(audio_path.getvalue())
                 temp_file.flush()
                 result = model.transcribe(temp_file.name)
@@ -35,12 +35,11 @@ class AudioTranscriberTool:
             result = model.transcribe(audio_path)
         return result["text"]
 
-    def process_speech_to_text(self, audio_input):
+    def process_speech_to_text(self, audio_path):
         """Handles the entire speech-to-text process."""
 
         try:
-            response = requests.get(audio_input, timeout=15)
-            response.raise_for_status()
+            response = requests.get(audio_path, stream=True, timeout=30)
             audio_input = BytesIO(response.content)
         except requests.exceptions.RequestException as e:
             print(f"Error fetching audio file: {e}")

@@ -48,6 +48,7 @@ def run_and_submit_all( profile: gr.OAuthProfile | None):
     api_url = DEFAULT_API_URL
     questions_url = f"{api_url}/questions"
     submit_url = f"{api_url}/submit"
+    file_url = f"{api_url}/files"
 
     # 1. Instantiate Agent ( modify this part to create your agent)
     try:
@@ -69,11 +70,6 @@ def run_and_submit_all( profile: gr.OAuthProfile | None):
              print("Fetched questions list is empty.")
              return "Fetched questions list is empty or invalid format.", None
         print(f"Fetched {len(questions_data)} questions.")
-        # for item in questions_data:
-        #     print(item)
-        #     question_text = item.get("question")
-
-            # print(f"Question: {question_text}")
     except requests.exceptions.RequestException as e:
         print(f"Error fetching questions: {e}")
         return f"Error fetching questions: {e}", None
@@ -92,6 +88,26 @@ def run_and_submit_all( profile: gr.OAuthProfile | None):
     for item in questions_data:
         task_id = item.get("task_id")
         question_text = item.get("question")
+
+        if task_id == "7bd855d8-463d-4ed5-93ca-5fe35145f733":
+            question_text = f"{question_text} file_url: {file_url}/7bd855d8-463d-4ed5-93ca-5fe35145f733 file_type: xlsx"
+        elif task_id == "1f975693-876d-457b-a649-393859e79bf3":
+            question_text = f"{question_text} file_url: {file_url}/1f975693-876d-457b-a649-393859e79bf3"
+        elif task_id == "99c9cc74-fdc8-46c6-8f8d-3ce2d3bfeea3":
+            question_text = f"{question_text} audio_path: {file_url}/99c9cc74-fdc8-46c6-8f8d-3ce2d3bfeea3"
+        elif task_id == "f918266a-b3e0-4914-865d-4faa564f1aef":
+            try:
+                response = requests.get(f"{file_url}/f918266a-b3e0-4914-865d-4faa564f1aef", timeout=30)
+                question_text = f"{question_text} Python program: {response.content}"
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching questions: {e}")
+            except requests.exceptions.JSONDecodeError as e:
+                print(f"Error decoding JSON response from questions endpoint: {e}")
+                print(f"Response text: {response.text[:500]}")
+            except Exception as e:
+                print(f"An unexpected error occurred fetching questions: {e}")
+
+
         if not task_id or question_text is None:
             print(f"Skipping item with missing task_id or question: {item}")
             continue
