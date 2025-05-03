@@ -1,9 +1,11 @@
-from typing import Union, Dict
 import pandas as pd
 import requests
+import json
+
+from typing import Union, Dict
 from io import BytesIO
 from urllib.parse import urlparse
-import json
+from utils.file_loader import load_file
 
 class ExcelCSVAnalysisTool:
     def _download_file(self, url: str) -> BytesIO:
@@ -41,13 +43,7 @@ class ExcelCSVAnalysisTool:
                 file_extension = file_source.lower()
 
             print(f"File extension: {file_extension}")
-            # Read the file into pandas
-            if 'csv' in file_extension:
-                data = pd.read_csv(file_obj if isinstance(file_obj, BytesIO) else file_obj)
-            elif 'xlsx' in file_extension:
-                data = pd.read_excel(file_obj if isinstance(file_obj, BytesIO) else file_obj)
-            else:
-                return "Unsupported file format. Please provide a CSV or Excel file."
+            data = load_file(file_obj if isinstance(file_obj, BytesIO) else file_obj, file_type=file_extension)
 
             # Perform analysis
             summary = {

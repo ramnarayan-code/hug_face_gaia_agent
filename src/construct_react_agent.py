@@ -10,6 +10,8 @@ from agents.react_agent import ReACTAgent
 from tools.wikipedia_tool import WikipediaTool
 from tools.excel_csv_analysis_tool import ExcelCSVAnalysisTool
 from tools.transcribe_audio_tool import AudioTranscriberTool
+from tools.analyze_image_tool import ImageAnalyzerTool
+
 
 def get_react_agent() -> ReACTAgent:
   
@@ -21,6 +23,7 @@ def get_react_agent() -> ReACTAgent:
         Tool(name="Wikipedia", func=WikipediaTool().search, description="Search for information on Wikipedia."),
         Tool(name="Excel/CSV Analysis", func=ExcelCSVAnalysisTool().analyze, description="Analyze Excel and CSV files."),
         Tool(name="Transcribe audio", func=AudioTranscriberTool().process_speech_to_text, description="Analyze Excel and CSV files."),
+        Tool(name="Analyze image", func=ImageAnalyzerTool().analyze, description="Analyze image and desribe it in concise manner."),
     ]
 
     # Initialize the ReACT agent with the tools

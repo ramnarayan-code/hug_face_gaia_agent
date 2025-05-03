@@ -106,7 +106,8 @@ def run_and_submit_all( profile: gr.OAuthProfile | None):
                 print(f"Response text: {response.text[:500]}")
             except Exception as e:
                 print(f"An unexpected error occurred fetching questions: {e}")
-
+        elif task_id == "cca530fc-4052-43b2-b130-b30968d8aa44":
+            question_text = f"Analyze the image based on the inputs: (image_query:{question_text}, image_path:{file_url}/cca530fc-4052-43b2-b130-b30968d8aa44)"
 
         if not task_id or question_text is None:
             print(f"Skipping item with missing task_id or question: {item}")

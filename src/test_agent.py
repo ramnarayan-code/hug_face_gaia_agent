@@ -1,6 +1,7 @@
 import requests
 import construct_react_agent
-
+from io import BytesIO
+from utils.image_processor import encode_image
 
 DEFAULT_API_URL = "https://agents-course-unit4-scoring.hf.space"
 api_url = DEFAULT_API_URL
@@ -115,6 +116,24 @@ def test_py():
     except Exception as e:
         print(f"An unexpected error occurred fetching questions: {e}")
 
+def test_image():
+    try:
+        from langchain_core.messages import HumanMessage
+        import httpx
+
+        question = """Review the chess position provided in the image. It is black's turn. Provide the correct next move for black which guarantees a win. Please provide your response in algebraic notation."""
+        agent = construct_react_agent.get_react_agent()
+        question = f"Analyze the image based on the inputs: (image_query:{question}, image_path:{file_url}/cca530fc-4052-43b2-b130-b30968d8aa44)"
+        print(question)
+        agent.run(question)
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching questions: {e}")
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"Error decoding JSON response from questions endpoint: {e}")
+        print(f"Response text: {response.text[:500]}")
+    except Exception as e:
+        print(f"An unexpected error occurred fetching questions: {e}")
+
 # test_excel()
 # test_audio()
 # test_libre()
@@ -122,3 +141,4 @@ def test_py():
 # test_shopping_audio()
 # test_polish()
 test_py()
+test_image()
