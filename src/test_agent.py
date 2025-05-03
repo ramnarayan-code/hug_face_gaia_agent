@@ -134,11 +134,41 @@ def test_image():
     except Exception as e:
         print(f"An unexpected error occurred fetching questions: {e}")
 
+def test_youtube1():
+    try:
+        question = """In the video https://www.youtube.com/watch?v=L1vXCYZAYYM, what is the highest number of bird species to be on camera simultaneously?."""
+        agent = construct_react_agent.get_react_agent()
+        agent.run(f"{question}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching questions: {e}")
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"Error decoding JSON response from questions endpoint: {e}")
+        print(f"Response text: {response.text[:500]}")
+    except Exception as e:
+        print(f"An unexpected error occurred fetching questions: {e}")
+
+
+def test_youtube2():
+    try:
+        question = """Examine the video at https://www.youtube.com/watch?v=1htKBjuUWec.
+
+What does Teal'c say in response to the question ""Isn't that hot?"""
+        agent = construct_react_agent.get_react_agent()
+        agent.run(f"{question}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching questions: {e}")
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"Error decoding JSON response from questions endpoint: {e}")
+        print(f"Response text: {response.text[:500]}")
+    except Exception as e:
+        print(f"An unexpected error occurred fetching questions: {e}")
 # test_excel()
 # test_audio()
 # test_libre()
 # test_grocery()
 # test_shopping_audio()
 # test_polish()
-test_py()
-test_image()
+# test_py()
+# test_image()
+test_youtube1()
+# test_youtube2()

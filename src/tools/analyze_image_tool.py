@@ -1,5 +1,4 @@
 import os
-import base64
 import requests
 import json
 
@@ -22,7 +21,7 @@ class ImageAnalyzerTool:
             
             response = requests.get(image_path, timeout=30)
             image_data = encode_image(response.content)
-            
+
             message = HumanMessage(
                 content=[
                     {"type": "text", "text": f"{question}"},
