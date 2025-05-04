@@ -17,4 +17,4 @@ src/
 ├── agents/ (ReACT agent)
 └── utils/ (Utility functions)
 ```
-Source code: https://github.com/ramnarayan-code/hug_face_gaia_agent
+Source code: [GAIA Agent](https://github.com/ramnarayan-code/hug_face_gaia_agent)
