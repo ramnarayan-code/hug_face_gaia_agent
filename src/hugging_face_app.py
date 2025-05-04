@@ -4,7 +4,7 @@ import requests
 import inspect
 import pandas as pd
 
-from construct_react_agent import get_react_agent
+from construct_react_agent import get_chatbot
 from agents.react_agent import ReACTAgent
 
 
@@ -26,7 +26,7 @@ class BasicAgent:
         return response
     
     def __get_agent(self) -> ReACTAgent:
-        return get_react_agent()
+        return get_chatbot()
 
        
 
