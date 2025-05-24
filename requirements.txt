@@ -16,3 +16,5 @@ langchain-community
 langchain-experimental
 openpyxl
 duckduckgo-search
+mcp[cli]
+langchain-mcp-adapters
