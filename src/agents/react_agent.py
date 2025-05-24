@@ -1,5 +1,4 @@
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain_core.prompts import PromptTemplate
+from langgraph.prebuilt import create_react_agent
 from utils.constants import REACT_PROMPT
 
 class ReACTAgent:
@@ -21,8 +20,8 @@ class ReACTAgent:
     """
     
     def __init__(self, llm, tools=None):
-        self.agent_executor = AgentExecutor(agent=create_react_agent(llm, tools, PromptTemplate.from_template(REACT_PROMPT)), tools=tools, verbose=True, handle_parsing_errors=True)
-
+        self.agent = create_react_agent(model=llm, tools=tools, prompt=REACT_PROMPT)
+        
     def run(self, query):
-        return self.agent_executor.invoke({"input": query})["output"]
+        return self.agent.invoke({"input": query})["output"]
  
