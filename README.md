@@ -19,7 +19,7 @@ src/
 ```
 Source code: [GAIA Agent](https://github.com/ramnarayan-code/hug_face_gaia_agent)
 
-## This project code contains the usage of Streamable-http MCP Client and MCP Server
+## Streamable-http MCP Client and MCP Server
 1. Start MCP Server
 ```
 python src/setup_mcp_server.py
