@@ -18,3 +18,4 @@ openpyxl
 duckduckgo-search
 mcp[cli]
 langchain-mcp-adapters
+langgraph
