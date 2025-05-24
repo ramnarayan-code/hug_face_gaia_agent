@@ -2,7 +2,6 @@
 
 ## Overview
 This project implements a ReACT agent using LangChain framework, equipped with multiple tools for information retrieval, data analysis, and media processing. The agent combines Wikipedia searches, file analysis, and audio transcription capabilities to provide comprehensive information processing.
-### This project code contains the usage of Streamable-http MCP Client and MCP Server
 
 ## Features
 - Wikipedia article search and summary retrieval
@@ -19,3 +18,13 @@ src/
 └── utils/ (Utility functions)
 ```
 Source code: [GAIA Agent](https://github.com/ramnarayan-code/hug_face_gaia_agent)
+
+## This project code contains the usage of Streamable-http MCP Client and MCP Server
+1. Start MCP Server
+```
+python src/setup_mcp_server.py
+```
+2. Start MCP Client
+```
+python src/hugging_face_app_with_remote_mcp.py
+```
